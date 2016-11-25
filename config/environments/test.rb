@@ -17,6 +17,9 @@ Rails.application.configure do
   config.public_file_server.headers = {
     'Cache-Control' => 'public, max-age=3600'
   }
+  # Configure static file server for tests with Cache-Control for performance.
+  config.serve_static_files   = true
+  config.static_cache_control = 'public, max-age=3600'
 
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
@@ -27,6 +30,7 @@ Rails.application.configure do
 
   # Disable request forgery protection in test environment.
   config.action_controller.allow_forgery_protection = false
+
   config.action_mailer.perform_caching = false
 
   # Tell Action Mailer not to deliver emails to the real world.
@@ -34,6 +38,9 @@ Rails.application.configure do
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
 
+
+  # Randomize the order test cases are executed.
+  config.active_support.test_order = :random
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 
